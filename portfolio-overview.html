@@ -53,6 +53,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-menu a {
@@ -62,6 +63,9 @@
             transition: all 0.3s ease;
             position: relative;
             padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
         .nav-menu a:hover {
@@ -81,6 +85,66 @@
 
         .nav-menu a:hover::before {
             width: 100%;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            list-style: none;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 0.7rem 1.2rem;
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(78, 205, 196, 0.1);
+            color: #4ecdc4;
+            transform: translateX(5px);
+        }
+
+        .dropdown-menu a::before {
+            display: none;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
         }
 
         .hero {
@@ -364,6 +428,10 @@
                 display: none;
             }
 
+            .dropdown-menu {
+                display: none;
+            }
+
             .portfolio-grid {
                 grid-template-columns: 1fr;
                 padding: 4rem 1rem;
@@ -388,8 +456,23 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="portfolio-overview.html">Portfolio</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#" class="dropdown-toggle">Blog <i class="bi bi-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-home.html">Blog Home</a></li>
+                            <li><a href="blog-post.html">Blog Post</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-dropdown">
+                        <a href="#" class="dropdown-toggle">Portfolio <i class="bi bi-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio-overview.html">Portfolio Overview</a></li>
+                            <li><a href="portfolio-item.html">Portfolio Item</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
