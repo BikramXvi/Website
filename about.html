@@ -1,780 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Modern blog post template with clean design" />
-    <meta name="author" content="" />
-    <title>Modern Blog Post - Clean Template</title>
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: #2d3748;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #667eea;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            padding: 1rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: #374151;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
-
-        .dropdown-item:hover {
-            background: #f8fafc;
-            color: #667eea;
-        }
-
-        /* Main Content */
-        .main-content {
-            background: white;
-            border-radius: 24px 24px 0 0;
-            margin-top: 2rem;
-            overflow: hidden;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-            min-height: calc(100vh - 120px);
-        }
-
-        .article-section {
-            padding: 4rem 0;
-        }
-
-        .article-container {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        /* Author Sidebar */
-        .author-sidebar {
-            position: sticky;
-            top: 140px;
-        }
-
-        .author-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s ease;
-        }
-
-        .author-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .author-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .author-details h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 0.25rem;
-        }
-
-        .author-meta {
-            color: #718096;
-            font-size: 0.875rem;
-        }
-
-        /* Article Content */
-        .article-content {
-            max-width: none;
-        }
-
-        .article-header {
-            margin-bottom: 3rem;
-        }
-
-        .article-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #1a202c;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .article-date {
-            color: #718096;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .article-tags {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .tag {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-            color: white;
-        }
-
-        .article-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 16px;
-            margin-bottom: 3rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .article-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, #667eea66, #764ba266);
-        }
-
-        .article-body {
-            margin-bottom: 4rem;
-        }
-
-        .article-body p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: #4a5568;
-        }
-
-        .article-body h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin: 3rem 0 1.5rem 0;
-            position: relative;
-        }
-
-        .article-body h2::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-
-        /* Comments Section */
-        .comments-section {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .comment-form {
-            margin-bottom: 3rem;
-        }
-
-        .comment-textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 1rem;
-            line-height: 1.6;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-
-        .comment-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .comment-textarea::placeholder {
-            color: #a0aec0;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .comments-list {
-            space-y: 2rem;
-        }
-
-        .comment {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .comment:hover {
-            transform: translateY(-2px);
-        }
-
-        .comment-main {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .comment-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            flex-shrink: 0;
-        }
-
-        .comment-content {
-            flex: 1;
-        }
-
-        .comment-author {
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 0.5rem;
-        }
-
-        .comment-text {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-
-        .comment-replies {
-            margin-left: 3rem;
-            margin-top: 1.5rem;
-            space-y: 1rem;
-        }
-
-        .comment-reply {
-            background: #f7fafc;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .reply-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            flex-shrink: 0;
-        }
-
-        .reply-content {
-            flex: 1;
-        }
-
-        .reply-author {
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 0.25rem;
-            font-size: 0.9rem;
-        }
-
-        .reply-text {
-            color: #4a5568;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a202c;
-            color: white;
-            padding: 3rem 0;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-link {
-            color: #a0aec0;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #667eea;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .article-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Modern Business - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <style>
+            /* Custom Background Colors */
+            .bg-light-blue {
+                background-color: #e3f2fd !important;
             }
-
-            .author-sidebar {
-                position: static;
-                order: -1;
+            
+            /* Enhanced Typography */
+            .fw-bolder {
+                font-weight: 700 !important;
             }
-
-            .author-card {
-                padding: 1.5rem;
+            
+            h1, h2, h3, h4, h5, h6 {
+                color: #2c3e50;
+                margin-bottom: 1rem;
             }
-
-            .author-info {
-                justify-content: center;
-                text-align: center;
+            
+            .lead {
+                font-size: 1.25rem;
+                font-weight: 300;
+                line-height: 1.6;
             }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
+            
+            /* Button Styling */
+            .btn-primary {
+                background-color: #3498db;
+                border-color: #3498db;
+                padding: 12px 30px;
+                font-weight: 600;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
             }
-
-            .article-title {
-                font-size: 2.5rem;
+            
+            .btn-primary:hover {
+                background-color: #2980b9;
+                border-color: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
             }
-
-            .article-body h2 {
-                font-size: 1.75rem;
+            
+            /* Navigation Enhancements */
+            .navbar-brand {
+                font-weight: 700;
+                font-size: 1.5rem;
             }
-
-            .article-body h2::before {
-                display: none;
+            
+            .navbar-nav .nav-link {
+                font-weight: 500;
+                margin: 0 10px;
+                padding: 10px 15px !important;
+                border-radius: 25px;
+                transition: all 0.3s ease;
             }
-
-            .comment-replies {
-                margin-left: 1rem;
+            
+            .navbar-nav .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #fff !important;
             }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
+            
+            /* Section Styling */
+            section {
+                position: relative;
+                overflow: hidden;
             }
-        }
-
-        @media (max-width: 480px) {
+            
+            .py-5 {
+                padding: 80px 0 !important;
+            }
+            
+            /* Image Styling */
+            .img-fluid {
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+            
+            .img-fluid:hover {
+                transform: scale(1.05);
+            }
+            
+            .rounded-circle {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border: 4px solid #fff;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                transition: all 0.3s ease;
+            }
+            
+            .rounded-circle:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            }
+            
+            /* Team Member Cards */
+            .col.mb-5 {
+                transition: transform 0.3s ease;
+            }
+            
+            .col.mb-5:hover {
+                transform: translateY(-10px);
+            }
+            
+            .col.mb-5 h5 {
+                color: #2c3e50;
+                margin-top: 20px;
+                margin-bottom: 8px;
+            }
+            
+            .fst-italic {
+                color: #7f8c8d;
+                font-size: 0.95rem;
+            }
+            
+            /* Header Styling */
+            header {
+                background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+                position: relative;
+            }
+            
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23e3f2fd" opacity="0.3"/><circle cx="75" cy="75" r="1" fill="%233498db" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+                opacity: 0.1;
+            }
+            
+            /* Text Color Improvements */
+            .text-muted {
+                color: #6c757d !important;
+            }
+            
+            /* Container Enhancements */
             .container {
-                padding: 0 16px;
-            }
-
-            .article-title {
-                font-size: 2rem;
-            }
-
-            .article-tags {
-                flex-wrap: wrap;
-            }
-
-            .comments-section {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Reading Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            z-index: 1000;
-            transition: width 0.3s ease;
-        }
-    </style>
-</head>
-<body>
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">ModernBlog</a>
-                <ul class="nav-menu">
-                    <li><a href="#" class="nav-link">Home</a></li>
-                    <li><a href="#" class="nav-link">About</a></li>
-                    <li><a href="#" class="nav-link">Contact</a></li>
-                    <li><a href="#" class="nav-link">Pricing</a></li>
-                    <li><a href="#" class="nav-link">FAQ</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link">Blog ▾</a>
-                        <div class="dropdown-content">
-                            <a href="#" class="dropdown-item">Blog Home</a>
-                            <a href="#" class="dropdown-item">Blog Post</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link">Portfolio ▾</a>
-                        <div class="dropdown-content">
-                            <a href="#" class="dropdown-item">Portfolio Overview</a>
-                            <a href="#" class="dropdown-item">Portfolio Item</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <section class="article-section">
-            <div class="container">
-                <div class="article-container">
-                    <!-- Author Sidebar -->
-                    <aside class="author-sidebar">
-                        <div class="author-card">
-                            <div class="author-info">
-                                <div class="author-avatar"></div>
-                                <div class="author-details">
-                                    <h3>Valerie Luna</h3>
-                                    <div class="author-meta">News, Business</div>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-
-                    <!-- Article Content -->
-                    <main class="article-content">
-                        <article>
-                            <!-- Article Header -->
-                            <header class="article-header">
-                                <h1 class="article-title">Welcome to Blog Post!</h1>
-                                <div class="article-date">January 1, 2023</div>
-                                <div class="article-tags">
-                                    <a href="#" class="tag">Web Design</a>
-                                    <a href="#" class="tag">Freebies</a>
-                                </div>
-                            </header>
-
-                            <!-- Article Image -->
-                            <figure class="article-image"></figure>
-
-                            <!-- Article Body -->
-                            <div class="article-body">
-                                <p>Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
-                                
-                                <p>The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
-                                
-                                <p>If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
-                                
-                                <h2>I have odd cosmic thoughts every day</h2>
-                                
-                                <p>For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                                
-                                <p>Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
-                            </div>
-                        </article>
-
-                        <!-- Comments Section -->
-                        <section class="comments-section">
-                            <!-- Comment Form -->
-                            <div class="comment-form">
-                                <textarea class="comment-textarea" placeholder="Join the discussion and leave a comment!" rows="4"></textarea>
-                                <button class="submit-btn">Post Comment</button>
-                            </div>
-
-                            <!-- Comments List -->
-                            <div class="comments-list">
-                                <!-- Main Comment with Replies -->
-                                <div class="comment">
-                                    <div class="comment-main">
-                                        <div class="comment-avatar"></div>
-                                        <div class="comment-content">
-                                            <div class="comment-author">Commenter Name</div>
-                                            <div class="comment-text">If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Replies -->
-                                    <div class="comment-replies">
-                                        <div class="comment-reply">
-                                            <div class="reply-avatar"></div>
-                                            <div class="reply-content">
-                                                <div class="reply-author">Commenter Name</div>
-                                                <div class="reply-text">And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.</div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="comment-reply">
-                                            <div class="reply-avatar"></div>
-                                            <div class="reply-content">
-                                                <div class="reply-author">Commenter Name</div>
-                                                <div class="reply-text">When you put money directly to a problem, it makes a good headline.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Comment -->
-                                <div class="comment">
-                                    <div class="comment-main">
-                                        <div class="comment-avatar"></div>
-                                        <div class="comment-content">
-                                            <div class="comment-author">Commenter Name</div>
-                                            <div class="comment-text">When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </main>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div style="color: #a0aec0; font-size: 0.875rem;">Copyright © Your Website 2023</div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Privacy</a>
-                    <a href="#" class="footer-link">Terms</a>
-                    <a href="#" class="footer-link">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Reading progress bar
-            const progressBar = document.getElementById('progressBar');
-            const articleContent = document.querySelector('.article-body');
-            
-            function updateProgress() {
-                if (!articleContent) return;
-                
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                
-                progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+                position: relative;
+                z-index: 1;
             }
             
-            window.addEventListener('scroll', updateProgress);
+            /* Footer Styling */
+            footer {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            }
             
-            // Header background on scroll
-            const header = document.querySelector('.header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.boxShadow = 'none';
+            footer .link-light:hover {
+                color: #3498db !important;
+                text-decoration: none;
+            }
+            
+            /* Responsive Improvements */
+            @media (max-width: 768px) {
+                .py-5 {
+                    padding: 50px 0 !important;
                 }
-            });
-            
-            // Animate elements on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                    }
-                });
-            });
-            
-            // Observe elements for animation
-            document.querySelectorAll('.comment, .author-card, .article-image').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Comment form interaction
-            const textarea = document.querySelector('.comment-textarea');
-            const submitBtn = document.querySelector('.submit-btn');
-            
-            if (textarea && submitBtn) {
-                submitBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (textarea.value.trim()) {
-                        // Simulate comment submission
-                        textarea.value = '';
-                        // You would normally send this to a server
-                        alert('Comment submitted! (This is just a demo)');
-                    }
-                });
+                
+                h1 {
+                    font-size: 2rem;
+                }
+                
+                .lead {
+                    font-size: 1.1rem;
+                }
+                
+                .btn-lg {
+                    padding: 10px 25px;
+                    font-size: 1rem;
+                }
             }
-        });
-    </script>
-</body>
-</html>
+            
+            /* Animation for scroll */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .row {
+                animation: fadeInUp 0.8s ease-out;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Header-->
+            <header class="py-5 bg-white">
+                <div class="container px-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-xxl-6">
+                            <div class="text-center my-5">
+                                <h1 class="fw-bolder mb-3">Our mission is to make building websites easier for everyone.</h1>
+                                <p class="lead fw-normal text-muted mb-4">Start Bootstrap was built on the idea that quality, functional website templates and themes should be available to everyone. Use our open source, free products, or support us by purchasing one of our premium products or services.</p>
+                                <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- About section one-->
+            <section class="py-5 bg-light-blue" id="scroll-target">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">Our founding</h2>
+                            <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- About section two-->
+            <section class="py-5 bg-white">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">Growth &amp; beyond</h2>
+                            <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Team members section-->
+            <section class="py-5 bg-light-blue">
+                <div class="container px-5 my-5">
+                    <div class="text-center">
+                        <h2 class="fw-bolder">Our team</h2>
+                        <p class="lead fw-normal text-muted mb-5">Dedicated to quality and your success</p>
+                    </div>
+                    <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+                        <div class="col mb-5 mb-5 mb-xl-0">
+                            <div class="text-center">
+                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                                <h5 class="fw-bolder">Ibbie Eckart</h5>
+                                <div class="fst-italic text-muted">Founder &amp; CEO</div>
+                            </div>
+                        </div>
+                        <div class="col mb-5 mb-5 mb-xl-0">
+                            <div class="text-center">
+                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                                <h5 class="fw-bolder">Arden Vasek</h5>
+                                <div class="fst-italic text-muted">CFO</div>
+                            </div>
+                        </div>
+                        <div class="col mb-5 mb-5 mb-sm-0">
+                            <div class="text-center">
+                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                                <h5 class="fw-bolder">Toribio Nerthus</h5>
+                                <div class="fst-italic text-muted">Operations Manager</div>
+                            </div>
+                        </div>
+                        <div class="col mb-5">
+                            <div class="text-center">
+                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                                <h5 class="fw-bolder">Malvina Cilla</h5>
+                                <div class="fst-italic text-muted">CTO</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
